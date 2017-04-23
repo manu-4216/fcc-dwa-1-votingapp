@@ -20,7 +20,7 @@ var Poll = new Schema({
     }
 });
 
-module.exports = mongoose.model('User', Poll);
+module.exports = mongoose.model('Poll', Poll);
 
 
 function arrayLimit(val) {
