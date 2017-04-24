@@ -1,33 +1,60 @@
+/* global appUrl  */
+
 'use strict';
 
 (function () {
-
-   var addButton = document.querySelector('.btn-add');
-   var deleteButton = document.querySelector('.btn-delete');
-   var clickNbr = document.querySelector('#click-nbr');
-   var apiUrl = appUrl + '/api/:id/clicks';
-
-   function updateClickCount (data) {
-      var clicksObject = JSON.parse(data);
-      clickNbr.innerHTML = clicksObject.clicks;
+   
+   var axios = require('axios');
+   
+   var addPollButton = document.querySelector('.btn-add-poll');
+   var formQuestion = document.querySelector('.poll-question');
+   var formOptions = document.querySelectorAll('.poll-option');
+  
+   var apiUrl = appUrl + '/api/:id/polls';
+   
+   // Gets the question value from the form:
+   function getQuestion () {
+      return formQuestion.value
    }
-
-   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount));
-
-   addButton.addEventListener('click', function () {
-
-      ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
+   
+   
+   // Gets the list of options from the form
+   function getOptions () {
+      var optionsText = [];
+   
+      formOptions.forEach(function (option) {
+         optionsText.push(option.value)
+      })
+   
+      return optionsText
+   }
+   
+   
+   function cleanForm () {
+      formQuestion.value = '';
+      formOptions.forEach(option => {
+         option.value = ''
+      })
+   }
+   
+   
+   addPollButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      
+      console.log('btn pressed!');
+      
+      axios.post(apiUrl, {
+         question: getQuestion(),
+         options: getOptions()
+      })
+      .then(function (response) {
+         console.log(response.data)
+         cleanForm();
+      })
+      .catch(function (err) {
+         console.log(err);
+         if (err) throw err
       });
-
-   }, false);
-
-   deleteButton.addEventListener('click', function () {
-
-      ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
-      });
-
    }, false);
 
 })();

@@ -4,6 +4,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Poll = new Schema({
+    author: {
+        type: String,
+        required: true
+    },
     question: {
         type: String,
         required: true
@@ -17,6 +21,10 @@ var Poll = new Schema({
             }
         }],
         validate: [arrayLimit, '{PATH} needs at least 2 options']
+    },
+    created: { 
+        type: Date, 
+        default: Date.now
     }
 });
 
