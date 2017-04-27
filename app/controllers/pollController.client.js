@@ -20,34 +20,74 @@
   
    var apiUrl = appUrl + '/api/:id/polls';
 
+
    /**
-    * Get the options body
+    * Get the array of values from the body of the input options
+    * @return {array} 
     */
-   function getOptions () {
+   function getOptionsValue () {
       var optionsText = [];
    
-      getPollOptionsBody().forEach(function (option) {
+      getPollOptionsBodyElem().forEach(function (option) {
          optionsText.push(option.value)
       })
    
       return optionsText
    }
    
-   // Dynamically refetch the options body, since new ones might have been added.
-   function getPollOptionsBody () {
+   
+   /**
+    * Get the list of options body DOM elements.
+    * A function is needed, since this list can change.
+    * @return {array of DOM elements}
+    */
+   function getPollOptionsBodyElem () {
        return document.querySelectorAll('.poll-option');
    }
    
+   
+   /**
+    * Cleans the form by reseting the values of input options.
+    * @return {/}
+    */
    function cleanForm () {
       pollQuestion.value = '';
-      getPollOptionsBody().forEach(option => {
+      getPollOptionsBodyElem().forEach(option => {
          option.value = ''
       })
    }
    
    
+   /**
+    * Cleans the errors: messages and input options style.
+    * @return {/}
+    */
+   function cleanErrors () {
+      pollError.innerHTML = ''
+      pollError.classList.add('hidden');
+      document.querySelectorAll('.poll-form input').forEach(function (element) {
+         element.classList.remove('wrong');
+      })
+   }
+   
+   
+   /**
+    * Cleans the pollInfo.
+    * @return {/}
+    */
+   function cleanPollInfo () {
+      pollInfo.innerHTML = ''
+   }
+   
+   
+   /**
+    * Handles the display of form errors.
+    * A function is needed, since this list can change.
+    * @param  {array} rawErrors - the list of errors
+    * @return {array of DOM elements}
+    */
    function displayErrors (rawErrors) {
-      var errorsObject = getErrorsObject(rawErrors),
+      var errorsObject = getSimplifiedErrorsObject(rawErrors),
           errorsListHTML = '',
           elementsWithError;
       
@@ -77,7 +117,14 @@
    }
    
    
-   function getErrorsObject (err) {
+   /**
+    * Processes a raw XHR error, and returns a simplified version of it.
+    * A function is needed, since this list can change.
+    * @param  {array} err - raw error
+    * @return {object} example: { question: 'Poll question is mandatory', 
+    *                             options:  'At least 2 poll options are needed' }
+    */
+   function getSimplifiedErrorsObject (err) {
       var errorsObject = {};
       
       switch (err.response.status) {
@@ -90,34 +137,25 @@
          
          // Other errors:
          default:
-            errorsObject.push(err.message);
+            errorsObject['default'] = err.message;
             pollError.innerHTML = err.message
       }
       
       return errorsObject
    }
+
    
-   function cleanErrors () {
-      pollError.innerHTML = ''
-      pollError.classList.add('hidden');
-      document.querySelectorAll('.poll-form input').forEach(function (element) {
-         element.classList.remove('wrong');
-      })
-   }
-   
-   function cleanPollInfo () {
-      pollInfo.innerHTML = ''
-   }
    
    /**
-    * Sumbit poll form
+    * Add click listener on the submit button
+    * POST message sent: { question: ..., options: [ ... , ... , .... ] }
     */
    submitPollButton.addEventListener('click', function (event) {
       event.preventDefault();
       
       axios.post(apiUrl, {
          question: pollQuestion.value,
-         options: getOptions()
+         options: getOptionsValue()
       })
       .then(function (response) {
          var newPollLink = response.data;
@@ -134,7 +172,7 @@
    
    
    /**
-    * Add a new pool option to the list 
+    * Add click listener on the 'add new pool option' to the list 
     */
    addPollOptionButton.addEventListener('click', function (event) {
       event.preventDefault();
@@ -144,8 +182,6 @@
       
       var newOptionBody = newOptionItem.querySelector('.poll-option');
       newOptionBody.value = '';
-      
-      
    }, false);
    
    

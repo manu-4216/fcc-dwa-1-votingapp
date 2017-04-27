@@ -18,6 +18,11 @@ function PollHandler () {
 	*/
 	
 
+   /**
+    * Handles the request of adding a poll to the DB.
+    * @param  {Object} req - The request received
+	* @param  {Object} res - The response to send
+    */
 	this.addPoll = function (req, res) {
 	    var newPoll = new Polls({
 	    	author: req.user.github.username,
@@ -48,13 +53,17 @@ function PollHandler () {
 			*/
 	};
 	
+	
+   /**
+    * Handles the request of getting a poll info from the DB.
+    * @param  {Object} req - The request received
+	* @param  {Object} res - The response to send
+    */
 	this.getPoll = function (req, res) {
 		var queryId = new mongoose.mongo.ObjectId(req.params.id)
 
 		Polls.findOne({ _id: queryId })
         .then(function (result) {
-        	console.log('result find', result);
-        	
             res.send({
             	author: result.author,
                 question: result.question,
