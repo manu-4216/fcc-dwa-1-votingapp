@@ -1,6 +1,7 @@
 'use strict';
 
 var Polls = require('../models/polls.js');
+var mongoose = require('mongoose');
 
 function PollHandler () {
 
@@ -15,28 +16,24 @@ function PollHandler () {
 			});
 	};
 	*/
+	
 
 	this.addPoll = function (req, res) {
-	    console.log('question: ', req.body.question)
-	    console.log('options:', req.body.options)
-	    //res.send('ok')
-	    
 	    var newPoll = new Polls({
 	    	author: req.user.github.username,
 	        question: req.body.question,
-	        options: req.body.options.map(option => { 
-	        	return { 
-	        		text: option
-	        	}
-	        })
+	        options: req.body.options.filter(item => (item !== ''))
 	    });
 	    
 	    newPoll.save(function (err, storedPoll) {
+	    	var serverUrlBase = req.protocol + '://' + req.get('host')
+	    	
 	        if (err) {
-	        	console.log(err)
-	            res.send(err)
+	        	console.log('err', err)
+	            return res.status(403).send(err)
 	        }
-	        res.status(200).send(storedPoll._id.toString())
+	        var storedPollUrl = serverUrlBase + '/poll/' + storedPoll._id.toString();
+	        res.status(200).send(storedPollUrl);
 	    })
 	    
 	    /*
@@ -50,6 +47,26 @@ function PollHandler () {
 			);
 			*/
 	};
+	
+	this.getPoll = function (req, res) {
+		var queryId = new mongoose.mongo.ObjectId(req.params.id)
+
+		Polls.findOne({ _id: queryId })
+        .then(function (result) {
+        	console.log('result find', result);
+        	
+            res.send({
+            	author: result.author,
+                question: result.question,
+                created: result.created,
+                options: result.options,
+                votes: result.votes
+            })
+        })
+        .catch(function (err) {
+            res.send(err)
+        })
+	}
 
 /*
 	this.resetClicks = function (req, res) {

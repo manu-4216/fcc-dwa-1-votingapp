@@ -21,7 +21,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 })); 
 
-
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/common', express.static(process.cwd() + '/app/common'));

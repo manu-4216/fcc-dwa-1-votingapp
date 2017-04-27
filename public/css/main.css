@@ -34,7 +34,7 @@ p {
 	margin: 8px 0 0 0;
 }
 
-.container p {
+.container p, .container form {
 	text-align: center;
 	padding: 0;
 }
@@ -202,3 +202,53 @@ span {
 	display: inline;
 	margin: 0;
 }
+
+
+.container {
+	text-align: center;
+}
+
+.poll-error-msg {
+	color: #e28d8d;
+	background: #fef1f1;
+}
+
+ul {
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	margin: 5px;
+}
+
+.poll-option {
+	display: inline;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.wrong {
+	border: 1px solid #e58282;
+	box-shadow: inset 0px 0px 3px 0px #e58282;
+}
+
+label {
+	display: block;
+	margin-top: 10px;
+}
+
+.btn-add-option {
+	margin: 0px auto;
+	background: #efefef;
+}
+
+.btn-add-option, .btn-submit-poll {
+	display: block;
+	border-radius: 4px;
+}
+.btn-submit-poll {
+	background: #ffe4d8;
+	margin: 10px auto 0;
+}
+

@@ -17,38 +17,40 @@
 
 	<body>
 		<div class="container">
-			<img src="/public/img/icon.png" />
-			<br />
-			<p class="title-text">Voting app</p>
+			<p class="title-text">
+				Voting app
+			</p>
 		</div>
 	
 		<div class="container">
-			<p>You have clicked the button <span id="click-nbr"></span> times.</p>
-			<br />
-			<div class="btn-container">
-				<button type="submit" class="btn btn-add">CLICK ME!</button>
-				<button class="btn btn-delete">RESET</button>
-			</div>
-		</div>
-		
-		
-		<div class="container">
-			<form>
-				<label for='question'>Type your question:</label><br>
-				<input type='text' class='poll-question' id='question' placeholder='example: "What is your favorite color"' autocomplete='off'><br>
+			<form class="poll-form">
+				<label for='question'>Poll question:</label>
+				<input type='text' class='poll-question' id='question' name='question' autocomplete='off'><br>
 				
-				<label>Options</label><br>
-  				<input type="text" class="poll-option"><br>
-  				<input type="text" class="poll-option"><br>
+				<label>Options:</label>
+				<ul class='poll-option-list'>
+					<li class="poll-option-item">
+						<input type="text" class="poll-option" name='options'>
+					</li>
+					<li class="poll-option-item">
+						<input type="text" class="poll-option" name='options'>
+					</li>
+				</ul>
   				
-				<button class='btn-add-poll'>Submit</button>>
 			</form>
+			
+			<button class='btn-add-option'>Add option</button>
+			<p class='poll-error-msg hidden'></p>
+			
+			<button class='btn-submit-poll'>Submit</button>
+			
+			<p class='new-poll-info'></p>
+			
 		</div>
 		
 		
 		
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
-		<script type="text/javascript" src="controllers/clickController.client.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
 		<script type="text/javascript" src="controllers/pcc.js"></script>
 	</body>
