@@ -5,7 +5,8 @@
    var profileId = document.querySelector('#profile-id') || null;
    var profileUsername = document.querySelector('#profile-username') || null;
    var profileRepos = document.querySelector('#profile-repos') || null;
-   var displayName = document.querySelector('#display-name');
+   var displayWelcome = document.querySelector('.header--welcome');
+   var displayName = document.querySelector('.header--username');
    var apiUrl = appUrl + '/api/:id';
 
    function updateHtmlElement (data, element, userProperty) {
@@ -20,6 +21,7 @@
       } else {
          updateHtmlElement(userObject, displayName, 'username');
       }
+      displayWelcome.classList.remove('hidden');
 
       if (profileId !== null) {
          updateHtmlElement(userObject, profileId, 'id');   

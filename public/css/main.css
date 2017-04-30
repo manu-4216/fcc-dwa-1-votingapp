@@ -1,5 +1,13 @@
 /********* Fonts **********/
 
+:root {
+	font-size: 16px;
+}
+
+/***< RESET >*************************************************/
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0; padding: 0;border: 0; font-size: 100%}
+ol, ul {list-style: none;}
+
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -15,54 +23,108 @@
 }
 
 /****** Main Styling ******/
-
 body {
 	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	margin: 0;
-	padding: 0;
+	background: floralwhite;
 }
+
+
+/****************************************************/
+/*   HEADER                                         */
+/****************************************************/
 
 header {
-	color: #00BCD4;
-	height: 56px;
-	margin: 0 0 14px 0;
-	text-align: center;
+	color: #ffd6d6;
+	background: #5a2c3b;
+	box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.5);
 }
 
-p {
-	margin: 8px 0 0 0;
+
+/*---------------------------------------------------*/
+/* header > LEFT SIDE                                */
+/*---------------------------------------------------*/
+.header--icon {
+	padding: 0.5em 0.5em 0.5em 1em;
+    width: 2.5rem;
+    height: 2.5rem;
+    vertical-align: middle;
 }
+/* Hide the welcome message on mobile, since less space */
+@media (min-width: 32em) {
+  .header--icon {
+    padding: 0.5em 1em;
+  }
+  header .header--title {
+  	font-size: 1.4rem;
+  }
+  div .header--welcome {
+    opacity: 1;
+  }
+  div input {
+	width: 70vw;
+  }
+
+  div li input {
+	 width: 50vw;
+  }
+}
+
+.header--title {
+	display: inline-block;
+	font-weight: 500;
+	font-size: 1rem;
+	vertical-align: middle;
+}
+
+
+/*---------------------------------------------------*/
+/* header > RIGHT SIDE                               */
+/*---------------------------------------------------*/
+.header--right-side {
+	position: absolute;
+	right: 0;
+    top: 1.2em;
+	display: inline-block;
+}
+
+.header--welcome {
+	opacity: 0;
+	transition: opacity 0.4s;
+}
+
+.header--welcome.hidden {
+	opacity: 0;
+}
+
+.header--username{
+	font-weight: 400;
+	display: none;
+}
+.header--username {
+	display: inline-block;
+}
+.header--menu {
+	text-decoration: none;
+	padding: 6px;
+	margin: 0;
+	color: #f42f72;
+}
+.header--menu:visited {
+	color: #f42f72;
+}
+.header--menu:hover {
+	color: #ffb2ba;
+}
+.header--menu:active {
+	color: #ffb2ba;
+}
+
 
 .container p, .container form {
 	text-align: center;
 	padding: 0;
 }
 
-/****** Header Styling ******/
-
-header p {
-	margin: 16px 0 5px 0;
-}
-
-.menu {
-	text-decoration: none;
-	padding: 6px;
-	margin: 0;
-	color: #727272;
-}
-
-.menu:visited {
-	color: #727272;
-}
-
-.menu:hover {
-	color: #FFA000;
-}
-
-.menu:active {
-	color: #FF630D;
-}
 
 header a ~ p {
 	margin: 0;
@@ -71,8 +133,8 @@ header a ~ p {
 	color: #ECEFF1;
 }
 
-#display-name {
-	font-weight: 400;
+.display-name {
+
 }
 
 /****** Login Styling ******/
@@ -101,16 +163,9 @@ header a ~ p {
 
 img {
 	margin: 0 auto;
-	display: block;
+	display: inline-block;
 }
 
-.title-text { /* Styling for the title text */
-	padding: 0;
-	margin: -25px 0 0 0;
-	font-weight: 500;
-	font-size: 60px;
-	color: #e28d8d;
-}
 
 /****** Click Styling ******/
 
@@ -206,11 +261,13 @@ span {
 
 .container {
 	text-align: center;
+	margin-top: 1.2em;
 }
 
 .poll-error-msg {
+	padding: 0.4rem;
 	color: #e28d8d;
-	background: #fef1f1;
+	background: #fbe4e4;
 }
 
 ul {
@@ -218,6 +275,16 @@ ul {
 	text-align: center;
 	padding: 0;
 	margin: 5px;
+}
+
+input {
+	width: 90vw;
+    margin: 0.2em;
+   	padding: 0.4em;
+}
+
+li input {
+	width: 80vw;
 }
 
 .poll-option {
@@ -233,9 +300,17 @@ ul {
 	box-shadow: inset 0px 0px 3px 0px #e58282;
 }
 
+button {
+	padding: 0.4em;
+}
+
 label {
 	display: block;
 	margin-top: 10px;
+}
+
+button, input {
+	border-radius: 4px;
 }
 
 .btn-add-option {
@@ -245,7 +320,6 @@ label {
 
 .btn-add-option, .btn-submit-poll {
 	display: block;
-	border-radius: 4px;
 }
 .btn-submit-poll {
 	background: #ffe4d8;
