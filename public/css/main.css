@@ -76,6 +76,12 @@ header {
 	vertical-align: middle;
 }
 
+div .visible {
+	display: block;
+}
+div .hidden {
+	display: none;
+}
 
 /*---------------------------------------------------*/
 /* header > RIGHT SIDE                               */
@@ -96,11 +102,11 @@ header {
 	opacity: 0;
 }
 
-.header--username{
+.header--user-fullname{
 	font-weight: 400;
 	display: none;
 }
-.header--username {
+.header--user-fullname {
 	display: inline-block;
 }
 .header--menu {
@@ -120,7 +126,7 @@ header {
 }
 
 
-.container p, .container form {
+.root-container p, .root-container form {
 	text-align: center;
 	padding: 0;
 }
@@ -177,7 +183,7 @@ img {
 .btn {	/* Styling for buttons */
 	margin: 0 8px;
 	color: white;
-	background-color: #00BCD4;
+	background-color: #5a2c3b;
 	display: inline-block;
 	border: 0;
 	font-size: 14px;
@@ -259,7 +265,7 @@ span {
 }
 
 
-.container {
+.root-container {
 	text-align: center;
 	margin-top: 1.2em;
 }

@@ -8,46 +8,79 @@
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 	</head>
 
-	<header>
-		<img class='header--icon' src="./public/img/icon.png"></img>
-		<title class='header--title'>VOTING APP</title>
-		
-		<div class='header--right-side'>
-			<span class='header--welcome hidden'>Welcome, <span class="header--username"></span>!</span>
-			<a class="header--menu" href="/profile">Profile</a>
-			<span>|</span>
-			<a class="header--menu" href="/logout">Logout</a>
-		</div>
-		
-	</header>
 
 	<body>
-		<div class="container">
-			<form class="poll-form">
-				<label for='question'>Poll question:</label>
-				<input type='text' class='poll-question' id='question' name='question' autocomplete='off'><br>
-				
-				<label>Options:</label>
-				<ul class='poll-option-list'>
-					<li class="poll-option-item">
-						<input type="text" class="poll-option" name='options'>
-					</li>
-					<li class="poll-option-item">
-						<input type="text" class="poll-option" name='options'>
-					</li>
-				</ul>
-  				
-			</form>
-			
-			<button class='btn-add-option'>Add option</button>
-			<p class='poll-error-msg hidden'></p>
-			
-			<button class='btn-submit-poll'>Submit</button>
-			
-			<p class='new-poll-info'></p>
-			
-		</div>
 		
+		<!-- HEADER with navigation (always visible) -->
+		<header>
+			<img class='header--icon' src="./public/img/icon.png"></img>
+			<title class='header--title'>VOTING APP</title>
+		
+			<div class='header--right-side'>
+				<span class='header--welcome hidden'>Welcome, <span class="header--user-fullname"></span>!</span>
+				<a class="header--menu linkto-profile" href="/profile">Profile</a>
+				<span>|</span>
+				<a class="header--menu" href="/logout">Logout</a>
+			</div>
+		</header>
+	
+	
+		<!-- CONTAINERS:            -->
+				
+		<!--  1. POLLS LIST         -->
+		<!--  2. NEW POLL CREATION  -->
+		<!--  3. USER PROFILE       -->
+		
+		
+		<div class='root-container'>
+			
+			<!--  1. POLLS LIST (loaded at the beggining)  -->
+			<div class='container--polls-list visible'>
+				<button class='btn-create-poll'>Create poll</button>
+			</div>
+		
+	
+			<!--  2. NEW POLL CREATION  -->
+			<div class="container--create-poll hidden">
+				<form class="poll-form">
+					<label for='question'>Poll question:</label>
+					<input type='text' class='poll-question' id='question' name='question' autocomplete='off'><br>
+				
+					<label>Options:</label>
+					<ul class='poll-option-list'>
+						<li class="poll-option-item">
+							<input type="text" class="poll-option" name='options'>
+						</li>
+						<li class="poll-option-item">
+							<input type="text" class="poll-option" name='options'>
+						</li>
+					</ul>
+  				
+				</form>
+			
+				<button class='btn-add-option'>Add option</button>
+				<p class='poll-error-msg hidden'></p>
+			
+				<button class='btn-submit-poll'>Submit</button>
+			
+				<p class='new-poll-info'></p>
+			
+			</div>
+		
+		
+		
+			<!-- 3. USER PROFILE -->
+			<div class="container--user-profile hidden">
+				<div class="github-profile">
+				<img src="/public/img/gh-mark-32px.png" alt="github logo" />
+				<p><span>ID: </span><span id="profile-id" class="profile-value"></span></p>
+				<p><span>Username: </span><span id="profile-username" class="profile-value"></span></p>
+				<p><span>Display Name: </span><span class="profile--user-fullname" class="profile-value"></span></p>
+				<p><span>Repositories: </span><span id="profile-repos" class="profile-value"></span></p>
+				<a class="menu linkto-polls-list" href="/">Home</a>
+			</div>
+		
+		</div>
 		
 		<script type="text/javascript" src="public/main.js"></script>
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
