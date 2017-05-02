@@ -5,18 +5,6 @@ var mongoose = require('mongoose');
 
 function PollHandler () {
 
-/*
-	this.getClicks = function (req, res) {
-		Polls
-			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
-			.exec(function (err, result) {
-				if (err) { throw err; }
-
-				res.json(result.nbrClicks);
-			});
-	};
-	*/
-	
 
    /**
     * Handles the request of adding a poll to the DB.
@@ -77,18 +65,6 @@ function PollHandler () {
         })
 	}
 
-/*
-	this.resetClicks = function (req, res) {
-		Users
-			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
-			.exec(function (err, result) {
-					if (err) { throw err; }
-
-					res.json(result.nbrClicks);
-				}
-			);
-	};
-	*/
 	
 	 /**
     * Handles the request of getting the list of polls.

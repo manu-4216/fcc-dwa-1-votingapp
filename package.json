@@ -1,7 +1,7 @@
 {
-  "name": "clementinejs-fcc",
+  "name": "fcc-dwa-1-votingapp",
   "version": "1.0.1",
-  "description": "The elegant and lightweight boilerplate for full stack JavaScript.",
+  "description": "Full Stack MERN Dynamic Web App.",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -10,20 +10,25 @@
   "homepage": "http://www.clementinejs.com/",
   "bugs": "https://github.com/johnstonbl01/clementinejs-fcc/issues",
   "keywords": [
+    "React",
     "MongoDB",
     "Mongoose",
     "full stack",
     "Express",
     "Node",
-    "javascript",
-    "boilerplate"
+    "javascript"
   ],
   "scripts": {
     "start": "node server.js",
     "db-start": "mongod --smallfiles",
-    "build": "browserify pollController.client.js -o pcc.js"
+    "build": "browserify pollController.client.js -o pcc.js",
+    "build:react": "babel --presets react src --watch --out-dir public",
+    "build:bundle": "browserify public/App.js > public/bundle.js"
   },
-  "author": "Blake Johnston",
+  "babel": {
+      "presets": ["es2015", "react"]
+  },
+  "author": "Manuel MICU",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
@@ -37,8 +42,12 @@
     "serve-favicon": "^2.4.2"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "mocha": "^3.3.0",
     "nodemon": "^1.11.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "request": "^2.81.0"
   }
 }

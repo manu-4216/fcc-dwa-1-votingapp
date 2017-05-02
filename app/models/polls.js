@@ -16,18 +16,6 @@ var Poll = new Schema({
         type: [String],
         validate: [arrayLimit, 'There needs to be at least 2 options']
     },
-    /*
-    options: {
-        type: [{
-            text: String,
-            votes: {
-                type: Number,
-                default: 0
-            }
-        }],
-        validate: [arrayLimit, 'A pool needs at least 2 options']
-    },
-    */
     votes: [Number],
     created: { 
         type: Date, 
