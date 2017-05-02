@@ -64,5 +64,8 @@ module.exports = function (app, passport) {
 		//.post(isLoggedIn, pollHandler.addPoll)
 		//.delete(isLoggedIn, pollHandler.resetClicks);
 		
+	app.route('/polls')
+		.get(isLoggedIn, pollHandler.getAllPolls)
+		
 	
 };

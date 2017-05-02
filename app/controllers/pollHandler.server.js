@@ -55,7 +55,7 @@ function PollHandler () {
 	
 	
    /**
-    * Handles the request of getting a poll info from the DB.
+    * Handles the request of getting a poll from the DB.
     * @param  {Object} req - The request received
 	* @param  {Object} res - The response to send
     */
@@ -89,6 +89,28 @@ function PollHandler () {
 			);
 	};
 	*/
+	
+	 /**
+    * Handles the request of getting the list of polls.
+    * @param  {Object} req - The request received
+	* @param  {Object} res - The response to send
+    */
+	this.getAllPolls = function (req, res) {
+		Polls.find({ author: req.user.github.username })
+        .then(function (result) {
+        	res.send(result)
+            /* res.send({
+            	author: result.author,
+                question: result.question,
+                created: result.created,
+                options: result.options,
+                votes: result.votes
+            })*/
+        })
+        .catch(function (err) {
+            res.send(err)
+        })
+	}
 
 }
 
