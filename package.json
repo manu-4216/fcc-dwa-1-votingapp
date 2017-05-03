@@ -23,10 +23,14 @@
     "db-start": "mongod --smallfiles",
     "build": "browserify pollController.client.js -o pcc.js",
     "build:react": "babel --presets react src --watch --out-dir public",
-    "build:bundle": "browserify public/App.js > public/bundle.js"
+    "build:bundle": "browserify public/App.js > public/bundle.js",
+    "build:bundle2": "browserify public/App.js -o public/bundle.js -t [ babelify --presets [ es2015 react ] ]"
   },
   "babel": {
-      "presets": ["es2015", "react"]
+    "presets": [
+      "es2015",
+      "react"
+    ]
   },
   "author": "Manuel MICU",
   "license": "MIT",
@@ -36,6 +40,7 @@
     "dotenv": "^1.2.0",
     "express": "^4.12.4",
     "express-session": "^1.11.3",
+    "moment": "^2.18.1",
     "mongoose": "^4.1.0",
     "passport": "^0.3.0",
     "passport-github": "^1.0.0",
@@ -44,6 +49,7 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babelify": "^7.3.0",
     "mocha": "^3.3.0",
     "nodemon": "^1.11.0",
     "react": "^15.5.4",

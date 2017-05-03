@@ -37,6 +37,17 @@
    }, false);
    
    
+   
+   /**
+    * Add click listener on the 'create new pool'
+    */
+   createPollButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      
+      utils.showContent('.container--create-poll')
+   }, false);
+   
+   
 
    /**
     * Get the array of values from the body of the input options
