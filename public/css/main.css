@@ -126,7 +126,7 @@ div .hidden {
 }
 
 
-.root-container p, .root-container form {
+.root-container p, .container form {
 	text-align: center;
 	padding: 0;
 }
@@ -265,7 +265,7 @@ span {
 }
 
 
-.root-container {
+.container {
 	text-align: center;
 	margin-top: 1.2em;
 }
@@ -284,7 +284,7 @@ ul {
 }
 
 input {
-	width: 90vw;
+	width: 80vw;
     margin: 0.2em;
    	padding: 0.4em;
 }

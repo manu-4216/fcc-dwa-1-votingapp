@@ -11,7 +11,7 @@
    var axios = require('axios');
    var utils = require('../common/utils.js');
    
-   var createPollButton = document.querySelector('.btn-create-poll');
+   //var createPollButton = document.querySelector('.btn-create-poll');
    
    var submitPollButton = document.querySelector('.btn-submit-poll');
    var addPollOptionButton = document.querySelector('.btn-add-option');
@@ -30,22 +30,24 @@
    /**
     * Add click listener on the 'create new pool'
     */
-   createPollButton.addEventListener('click', function (event) {
-      event.preventDefault();
+   //createPollButton.addEventListener('click', function (event) {
+      //event.preventDefault();
       
-      utils.showContent('.container--create-poll')
-   }, false);
+      //utils.showContent('.container--create-poll')
+   //}, false);
    
    
    
    /**
     * Add click listener on the 'create new pool'
     */
+    /*
    createPollButton.addEventListener('click', function (event) {
       event.preventDefault();
       
       utils.showContent('.container--create-poll')
    }, false);
+   */
    
    
 
